@@ -29,7 +29,7 @@ const Signup = () => {
             return
         }
         try {
-            const response = await fetch("http://localhost:8080/users/register", {
+            const response = await fetch("https://krytech.onrender.com/users/register", {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {

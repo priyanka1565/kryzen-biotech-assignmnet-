@@ -18,7 +18,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/users",UserRouter)
-app.use(authenticate)
+// app.use(authenticate)
 app.use("/forms",FormRouter)
 
 
