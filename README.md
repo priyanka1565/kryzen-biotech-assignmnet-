@@ -1,1 +1,0 @@
-# kryzen-biotech-assignmnet-
