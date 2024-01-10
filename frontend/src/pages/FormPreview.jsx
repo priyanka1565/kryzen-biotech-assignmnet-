@@ -38,7 +38,7 @@ const FormPreview = () => {
       pdf.text(`Age: ${form.age}`, 20, 30);
       pdf.text(`Address: ${form.address}`, 20, 40);
 
-      const imgData = form.photo; // Assuming form.photo is a base64-encoded image
+      const imgData ="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbeautiful%2F&psig=AOvVaw3pL2MNuZc60TqH3n1ym0Ky&ust=1704966691869000&source=images&cd=vfe&ved=0CBMQjRxqFwoTCMje7f7F0oMDFQAAAAAdAAAAABAE // Assuming form.photo is a base64-encoded image"
       pdf.addImage(imgData, 'JPEG', 20, 50, 80, 80);
 
       pdf.save(`form-preview-${form.name.replace(/\s+/g, '_')}.pdf`);
@@ -76,7 +76,7 @@ const FormPreview = () => {
               <tr>
                 <td className="border px-4 py-2 font-bold">Photo:</td>
                 <td className="border px-4 py-2">
-                  <img src={form.photo} alt="User" className="max-w-full h-32 object-cover" />
+                  <img src={form.imgData} alt="User" className="max-w-full h-32 object-cover" />
                 </td>
               </tr>
               {/* Add more rows as needed */}
