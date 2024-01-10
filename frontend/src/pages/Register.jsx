@@ -29,7 +29,7 @@ const Signup = () => {
             return
         }
         try {
-            const response = await fetch("https://krytech.onrender.com/users/register", {
+            const response = await fetch("https://kryzen-backend-jstz.onrender.com/users/register", {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {

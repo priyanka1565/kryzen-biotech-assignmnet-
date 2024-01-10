@@ -39,7 +39,7 @@ const Form = () => {
             formDataWithPhoto.append("address", formData.address);
             formDataWithPhoto.append("photo", photo);
 
-            const response = await axios.post("http://localhost:8080/forms/submit", formDataWithPhoto, {
+            const response = await axios.post(" http://localhost:8080/forms/submit", formDataWithPhoto, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
