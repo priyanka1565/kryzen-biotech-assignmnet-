@@ -1,7 +1,9 @@
-import {  useState } from 'react';
+// Form.jsx
+
+import { useState } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
@@ -25,8 +27,8 @@ const Form = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (formData.name === "" || formData.address === "" || formData.age === "") {
-            toast.error("Please enter all details first !", {
+        if (formData.name === '' || formData.address === '' || formData.age === '') {
+            toast.error('Please enter all details first!', {
                 position: toast.POSITION.TOP_RIGHT,
             });
             return;
@@ -34,35 +36,38 @@ const Form = () => {
 
         try {
             const formDataWithPhoto = new FormData();
-            formDataWithPhoto.append("name", formData.name);
-            formDataWithPhoto.append("age", formData.age);
-            formDataWithPhoto.append("address", formData.address);
-            formDataWithPhoto.append("photo", photo);
+            formDataWithPhoto.append('name', formData.name);
+            formDataWithPhoto.append('age', formData.age);
+            formDataWithPhoto.append('address', formData.address);
+            formDataWithPhoto.append('photo', photo);
 
-            const response = await axios.post("http://localhost:8080/forms/submit", formDataWithPhoto, {
+            const response = await axios.post('http://localhost:8080/forms/submit', formDataWithPhoto, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             });
 
             console.log('backendData', response);
-            toast.success("Form submitted successfully!", {
+            toast.success('Form submitted successfully!', {
                 position: toast.POSITION.TOP_RIGHT,
             });
 
+            // Store form data in local storage
+            localStorage.setItem('formData', JSON.stringify(formData));
+
             setTimeout(() => {
-                navigate("/formPreview");
+                navigate('/formPreview');
             }, 2000);
         } catch (error) {
             console.error('Error submitting form:', error.message);
-            toast.error("Something went wrong!", {
+            toast.error('Something went wrong!', {
                 position: toast.POSITION.TOP_RIGHT,
             });
         }
     }
 
     return (
-        <div className='flex flex-col md:flex-row'>
+        <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 flex items-center justify-center mx-auto">
                 <img src="https://wallpapercave.com/wp/wp2234604.jpg" alt="Registration" />
             </div>
