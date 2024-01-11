@@ -13,7 +13,7 @@ const FormPreview = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(' https://krzen-tech.onrender.com/forms');
+      const response = await axios.get(' https://backend-kryzen.onrender.com/forms');
       setFormData(response.data);
     } catch (error) {
       console.error('Error fetching form data:', error.message);
