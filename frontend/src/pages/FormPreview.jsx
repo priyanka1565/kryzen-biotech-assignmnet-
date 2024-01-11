@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import axios from 'axios';
@@ -13,14 +12,14 @@ const FormPreview = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(' https://backend-kryzen.onrender.com/forms');
+      const response = await axios.get('https://backend-kryzen.onrender.com/forms');
       setFormData(response.data);
     } catch (error) {
       console.error('Error fetching form data:', error.message);
     }
   };
 
-  const handleDownloadPDF = (index) => {
+  const handleDownloadPDF = async (index) => {
     try {
       const form = formData[index];
       const pdf = new jsPDF();
@@ -29,8 +28,14 @@ const FormPreview = () => {
       pdf.text(`Age: ${form.age}`, 20, 30);
       pdf.text(`Address: ${form.address}`, 20, 40);
 
-      const imgData = form.photo; // Assuming form.photo is a base64-encoded image
-      pdf.addImage(imgData, 'JPEG', 20, 50, 80, 80);
+      // Load image asynchronously
+      const img = await new Promise((resolve) => {
+        const image = new Image();
+        image.src = form.photo;
+        image.onload = () => resolve(image);
+      });
+
+      pdf.addImage(img, 'JPEG', 20, 50, 80, 80);
 
       pdf.save(`form-preview-${form.name.replace(/\s+/g, '_')}.pdf`);
     } catch (error) {
